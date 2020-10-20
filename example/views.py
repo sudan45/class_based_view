@@ -50,8 +50,15 @@ class AuthorList(ListView):
 
 class StudentList(ListView):
     model=Student
+    # template_name='' #default template name is model name _list
     template_name_suffix='_list' #it add the suffix at the default template Created by ListView
+    # context_object_name=''
     ordering=['name']
+
+
+    def get_context_data(self,*args,**kwargs):
+        context=super().get_context_data(**kwargs)
+        
 
 
 
