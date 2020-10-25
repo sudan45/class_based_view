@@ -5,12 +5,11 @@ from .forms import *
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import FormView,CreateView
+from django.views.generic.edit import FormView, CreateView, UpdateView
 from django import forms
 
 
 from .forms import StudentForm
-
 
 
 # Create your views here.
@@ -56,61 +55,67 @@ class AuthorList(ListView):
 
 
 class StudentList(ListView):
-    model=Student
+    model = Student
     # template_name='' #default template name is model name _list
     # template_name_suffix='_list' #it add the suffix at the default template Created by ListView
     # context_object_name=''
-    ordering=['name']
-
-
-
+    ordering = ['name']
 
 
 class ParentView(TemplateView):
-    template_name='example/parentview.html'
+    template_name = 'example/parentview.html'
 
-    def get_context_data(self,**kwargs):
-        context=super().get_context_data(**kwargs)
-        context['name']='sudan'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['name'] = 'sudan'
         return context
 
 
 class StudentDetailView(DetailView):
-    model=Student
-    template_name='example/student.html'
-    context_object_name='student'
+    model = Student
+    template_name = 'example/student.html'
+    context_object_name = 'student'
 
-    def get_context_data(self,*args,**kwargs):
-        context=super().get_context_data(*args,**kwargs)
-        context['all_studnet']=self.model.objects.all()
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['all_studnet'] = self.model.objects.all()
         return context
 
 
 class StudentAdd(FormView):
-    form_class=StudentForm
-    template_name='example/addstudent.html'
-    context_object_name='studentform'
-    success_url='/'
+    form_class = StudentForm
+    template_name = 'example/addstudent.html'
+    context_object_name = 'studentform'
+    success_url = '/'
 
-
-    def form_valid(self,form):
+    def form_valid(self, form):
         form.save()
         return super().form_valid(form)
 
 
-
 class StudentCreateView(CreateView):
-    model=Student
-    fields=['name','address','phone','parentname']
+    model = Student
+    fields = ['name', 'address', 'phone', 'parentname']
 
     def get_form(self):
-        form=super().get_form()
-        form.fields['name'].widget=forms.TextInput(attrs={'class':'form-control'})
-        form.fields['address'].widget=forms.TextInput(attrs={'class':'form-control'})
-        form.fields['phone'].widget=forms.NumberInput(attrs={'class':'form-control'})
-        form.fields['parentname'].widget=forms.TextInput(attrs={'class':'form-control'})
+        form = super().get_form()
+        form.fields['name'].widget = forms.TextInput(
+            attrs={'class': 'form-control'})
+        form.fields['address'].widget = forms.TextInput(
+            attrs={'class': 'form-control'})
+        form.fields['phone'].widget = forms.NumberInput(
+            attrs={'class': 'form-control'})
+        form.fields['parentname'].widget = forms.TextInput(
+            attrs={'class': 'form-control'})
 
         return form
 
 
+class UpdateStudent(UpdateView):
+    model = Student
+    fields = ['name']
 
+    def get_form(self):
+        form = super().get_form()
+        form.fields['name'].widget = forms.TextInput(attrs={'class': 'form-control'})
+        return form

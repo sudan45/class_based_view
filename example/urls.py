@@ -13,5 +13,7 @@ urlpatterns=[
     path('student/<int:pk>',StudentDetailView.as_view(),name='studentdetail'),
     path('addstudent',StudentAdd.as_view(),name='addstudent'),
     path('createstudent',StudentCreateView.as_view(),name='studentcreate'),
+    path('updatestudent/<int:pk>',UpdateStudent.as_view(),name='updatestudent'),
+    
 
 ]
