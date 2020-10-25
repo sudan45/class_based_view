@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -18,5 +19,10 @@ class Student(models.Model):
     phone=models.BigIntegerField()
     parentname=models.CharField(max_length=100)
 
+    def get_absolute_url(self):
+        return reverse("studentdetail",kwargs={"pk":self.pk})
+
     def __str__(self):
         return self.name
+
+ 

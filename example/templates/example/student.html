@@ -1,0 +1,21 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {{ student.id }}<br>
+    {{ student.name }}<br>
+    {{ student.address }}<br>
+    {{ student.phone }}<br>
+    {{ student.parentname }}<br>
+
+    <hr>
+    {% for stu in all_studnet %}
+    
+<a href="{% url 'studentdetail' stu.id %}"> {{ stu.name }}<br><br> </a>
+
+    {% endfor %}
+</body>
+</html>

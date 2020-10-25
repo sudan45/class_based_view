@@ -9,7 +9,9 @@ urlpatterns=[
     path('author', AuthorView.as_view(),name='author'),
     path('authorlist',AuthorList.as_view(),name='author-list'),
     path('studentlist',StudentList.as_view(),name='student-list'),
-
-    path('parentview/<int:id>',ParentView.as_view(),name='parentview')
+    path('parentview/<int:id>',ParentView.as_view(),name='parentview'),
+    path('student/<int:pk>',StudentDetailView.as_view(),name='studentdetail'),
+    path('addstudent',StudentAdd.as_view(),name='addstudent'),
+    path('createstudent',StudentCreateView.as_view(),name='studentcreate'),
 
 ]
