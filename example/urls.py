@@ -14,6 +14,5 @@ urlpatterns=[
     path('addstudent',StudentAdd.as_view(),name='addstudent'),
     path('createstudent',StudentCreateView.as_view(),name='studentcreate'),
     path('updatestudent/<int:pk>',UpdateStudent.as_view(),name='updatestudent'),
-    
-
+    path('delatestudent/<int:pk>',DelateStudent.as_view(),name='delatestudent'),
 ]

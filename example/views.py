@@ -5,7 +5,7 @@ from .forms import *
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import FormView, CreateView, UpdateView
+from django.views.generic.edit import FormView, CreateView, UpdateView,DeleteView
 from django import forms
 
 
@@ -119,3 +119,10 @@ class UpdateStudent(UpdateView):
         form = super().get_form()
         form.fields['name'].widget = forms.TextInput(attrs={'class': 'form-control'})
         return form
+
+
+class DelateStudent(DeleteView):
+    model=Student
+    success_url='/'
+    context_object_name='stu_del'
+    
